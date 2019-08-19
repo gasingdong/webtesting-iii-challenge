@@ -19,10 +19,12 @@ describe('<Controls />', () => {
     expect(lockGate);
     fireEvent.click(lockGate);
     expect(lock).toBeCalled();
+    expect(/unlock gate/i);
 
     const closeGate = getByText(/open gate/i);
     expect(closeGate);
     fireEvent.click(closeGate);
     expect(close).toBeCalled();
+    expect(/close gate/i);
   })
 })
