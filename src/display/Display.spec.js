@@ -10,6 +10,12 @@ describe('<Display />', () => {
     expect(tree.toJSON()).toMatchSnapshot();
   });
 
+  it("defaults to unlocked and open", () => {
+    const { getByText } = render(<Display />);
+    expect(getByText(/unlocked/i));
+    expect(getByText(/open/i));
+  })
+
   it("displays closed and locked props", () => {
     const { getByText } = render(<Display closed={true} locked={true} />);
     expect(getByText(/closed/i));
