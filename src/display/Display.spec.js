@@ -13,7 +13,7 @@ describe('<Display />', () => {
   it("displays closed and locked props", () => {
     const { getByText } = render(<Display closed={true} locked={true} />);
     expect(getByText(/closed/i));
-    expect(getByText(/locked/i));
+    expect(getByText(/^locked/i));
   })
 
   it("displays open and unlocked props", () => {
