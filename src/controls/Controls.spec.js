@@ -27,4 +27,20 @@ describe('<Controls />', () => {
     expect(close).toBeCalled();
     expect(/close gate/i);
   })
+
+  it("open toggle is disabled when gate is locked", () => {
+    const lock = jest.fn();
+    const { getByText } = render(<Controls locked={true} toggleLocked={lock} closed={true} />);
+    const openGate = getByText(/open gate/i);
+    fireEvent.click(openGate);
+    expect(lock).toBeCalledTimes(0);
+  })
+
+  it("lock toggle is disabled when gate is open", () => {
+    const open = jest.fn();
+    const { getByText } = render(<Controls locked={false} toggleClosed={open} closed={false} />);
+    const lockGate = getByText(/lock gate/i);
+    fireEvent.click(lockGate);
+    expect(open).toBeCalledTimes(0);
+  }) 
 })
